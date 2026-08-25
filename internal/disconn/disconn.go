@@ -4,6 +4,8 @@ import "errors"
 
 var errNotClosed = errors.New("breaker is not closed")
 
+var errShipNotArmed = errors.New("ship-side breaker not armed")
+
 type Breaker struct {
 	ID      string
 	closed  bool

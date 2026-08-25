@@ -14,7 +14,9 @@ func (b *Breaker) CloseAfterPhase(v *phase.Verifier) error {
 }
 
 func (b *Breaker) CloseAfterArm(arm *ship.BreakerArm) error {
-	_ = arm.Armed()
+	if !arm.Armed() {
+		return errShipNotArmed
+	}
 	b.close()
 	return nil
 }
