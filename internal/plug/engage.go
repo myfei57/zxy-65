@@ -9,7 +9,7 @@ import (
 var errNoBinding = errors.New("no meter binding for berth")
 
 func (p *Plug) Engage(berth string, binder *meter.Binder) error {
-	bind, ok := binder.Current(berth)
+	bind, ok := binder.Load(berth)
 	if !ok {
 		return errNoBinding
 	}
