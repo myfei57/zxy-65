@@ -8,7 +8,9 @@ import (
 )
 
 func (b *Breaker) CloseAfterPhase(v *phase.Verifier) error {
-	_ = v.Verify()
+	if err := v.Verify(); err != nil {
+		return err
+	}
 	b.close()
 	return nil
 }
