@@ -7,7 +7,7 @@ import (
 )
 
 func (b *Breaker) ParallelClose(sync *freq.Syncer, target float64, tolerance float64) error {
-	current := sync.Value()
+	current := sync.Current()
 	if !freq.InBand(current, target, tolerance) {
 		return errors.New("frequency out of sync")
 	}
